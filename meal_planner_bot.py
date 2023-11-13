@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-api_key = os.getenv("PROD_API_KEY")
+api_key = os.getenv("COHERE_API_KEY")
 
 co = cohere.Client(api_key)
 
@@ -19,7 +19,7 @@ response = co.chat(
     ],
     message="Generate a recipe and tell me the cost of each ingredient if known",
     documents=documents,
-    temperature=0.9,
+    temperature=0.3,
 )
 
 print(response.text)
