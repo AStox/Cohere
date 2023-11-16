@@ -9,15 +9,21 @@ api_key = os.getenv("COHERE_API_KEY")
 
 co = cohere.Client(api_key)
 
-protein_documents = query_weaviate("protein", 10)
-vegetable_documents = query_weaviate("vegetable", 30)
-carb_documents = query_weaviate("carbohydrate", 10)
+protein_documents = query_weaviate("protein", 3)
+vegetable_documents = query_weaviate("vegetable", 6)
+carb_documents = query_weaviate("carbohydrate", 2)
 documents = protein_documents + vegetable_documents + carb_documents
 
 chat_history = [
     {
         "role": "USER",
-        "message": """You generate recipes. Here's an example recipe. Always follow an identical format when responding and only respond with a recipe. No extra words.
+        "message": """Use RAG and the provided documents containing grocery sale information to generate a recipe using as many of the items as reasonably possible.
+            You should prioritize making a realistic recipe over using as many items as possible however. 
+            Feel free to add in items that aren't on sale if you think it will make the recipe more realistic. 
+            And tell me the pricing information for each ingredient where this information can be cited using the attached documents. 
+            If you don't know an ingredients price then just say N/A. Here's an example recipe. 
+            Always follow an identical format when responding and only respond with a recipe. No extra words.
+
             ## Sweet Potato and Chicken Hash
 
             **Ingredients:**
@@ -57,7 +63,7 @@ chat_history = [
             """,
     },
 ]
-message = "Use RAG and the provided documents containing grocery sale information to generate a recipe using as many of the items as reasonably possible. You should prioritize making a realistic recipe over using as many items as possible however. Feel free to add in items that aren't on sale if you think it will make the recipe more realistic. And tell me the pricing information for each ingredient where this information can be cited using the attached documents. If you don't know an ingredients price then just say N/A."
+message = "Generate the first recipe"
 response = co.chat(
     chat_history=chat_history,
     message=message,
