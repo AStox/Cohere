@@ -18,30 +18,29 @@ jobs:
         with:
           python-version: "3.8" # Match your Lambda runtime environment
 
-      # Deploy Lambda Function 1
-      - name: Deploy Lambda Function 1
+      - name: Deploy get_meal
         run: |
-          cd lambda_function_1
+          cd get_meal
           pip install -r requirements.txt
           # Zip your function code
-          zip -r function_1.zip .
-          aws lambda update-function-code --function-name function_1_name --zip-file fileb://function_1.zip
+          zip -r get_meal.zip .
+          aws lambda update-function-code --function-name get_meal --zip-file fileb://get_meal.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: "your_aws_region"
 
       # Deploy Lambda Function 2
-      - name: Deploy Lambda Function 2
-        run: |
-          cd lambda_function_2
-          pip install -r requirements.txt
-          # Zip your function code
-          zip -r function_2.zip .
-          aws lambda update-function-code --function-name function_2_name --zip-file fileb://function_2.zip
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "your_aws_region"
+    #   - name: Deploy Lambda Function 2
+    #     run: |
+    #       cd lambda_function_2
+    #       pip install -r requirements.txt
+    #       # Zip your function code
+    #       zip -r function_2.zip .
+    #       aws lambda update-function-code --function-name function_2_name --zip-file fileb://function_2.zip
+    #     env:
+    #       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #       AWS_REGION: "your_aws_region"
 
     # Add similar steps for other Lambda functions
