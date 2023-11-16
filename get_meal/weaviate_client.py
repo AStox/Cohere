@@ -1,15 +1,8 @@
-# query_weaviate.py
-
-import cohere
 import weaviate
-from dotenv import load_dotenv
-import json
 import os
 
 
 def query_weaviate(query_string, result_limit=20):
-    load_dotenv()
-
     # Initialize Cohere client
     cohere_api_key = os.getenv("COHERE_API_KEY")
     # co = cohere.Client(cohere_api_key, "latest")
