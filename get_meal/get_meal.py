@@ -1,7 +1,7 @@
 import os
 import json
 import cohere
-from get_meal.weaviate_client import query_weaviate
+from weaviate_client import query_weaviate
 
 
 def lambda_handler(event, context):
