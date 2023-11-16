@@ -22,7 +22,7 @@ jobs:
         run: |
           set -e
           cd get_meal
-          pip install -r requirements.txt -t package
+          pip install -r ../requirements.txt -t package
           cp get_meal.py package/
           cd package
           zip -r ../get_meal.zip .
