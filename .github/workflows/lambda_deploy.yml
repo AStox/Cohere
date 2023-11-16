@@ -24,6 +24,7 @@ jobs:
           cd get_meal
           pip install -r ../requirements.txt -t package
           cp get_meal.py package/
+          cp weaviate_client.py package/
           cd package
           zip -r ../get_meal.zip .
           cd ..
