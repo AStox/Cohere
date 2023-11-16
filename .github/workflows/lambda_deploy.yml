@@ -22,9 +22,10 @@ jobs:
         run: |
           set -e
           cd get_meal
-          pip install -r ../requirements.txt
-          # Zip your function code
-          zip -r get_meal.zip .
+          pip install -r requirements.txt -t ./package
+          cd package
+          zip -r ../get_meal.zip .
+          cd ..
           aws lambda update-function-code --function-name get_meal --zip-file fileb://get_meal.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
